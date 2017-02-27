@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         restaurantItemList.add(new RestaurantItem(
                         "Burguer house",
                         "American style burguers",
-                        3.0f,"http://www.que.es/archivos/201505/salmorejo_n-672xXx80.jpg",
+                        3.0f,"https://s-media-cache-ak0.pinimg.com/originals/af/c2/44/afc244ae80c5118f05cffbfefe4f7f42.jpg",
                         "15-20€"
                 )
         );
@@ -73,6 +73,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 R.layout.restaurant_item,
                 restaurantItemList
         );
+
+        // 4. connect the adapter with the listView
+        lista.setAdapter(adapter);
 
     }
 
