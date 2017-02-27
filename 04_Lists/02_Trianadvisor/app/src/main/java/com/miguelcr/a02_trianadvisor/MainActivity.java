@@ -68,6 +68,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         );
 
         // 3. The adapter
+        MyRestaurantAdapter adapter = new MyRestaurantAdapter(
+                this,
+                R.layout.restaurant_item,
+                restaurantItemList
+        );
 
     }
 
