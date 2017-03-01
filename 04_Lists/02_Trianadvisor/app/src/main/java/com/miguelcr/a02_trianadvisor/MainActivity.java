@@ -1,5 +1,6 @@
 package com.miguelcr.a02_trianadvisor;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -15,7 +17,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
     LottieAnimationView animationView;
     ListView lista;
     List<RestaurantItem> restaurantItemList;
@@ -77,6 +79,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // 4. connect the adapter with the listView
         lista.setAdapter(adapter);
 
+        lista.setOnItemClickListener(this);
+
     }
 
     @Override
@@ -105,5 +109,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         // play the heart animation when we click on heart icon
         animationView.playAnimation();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+        Intent intent = new Intent(this, ScrollingDetailRestaurantActivity.class);
+        intent.putExtra("name",restaurantItemList.get(position).getName());
+        intent.putExtra("description",restaurantItemList.get(position).getDescription());
+        intent.putExtra("photo",restaurantItemList.get(position).getUrlPhoto());
+        startActivity(intent);
     }
 }
