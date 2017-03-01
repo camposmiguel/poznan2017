@@ -8,8 +8,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+
+import com.miguelcr.a01_localdatabase.localdb.Students;
+import com.miguelcr.a01_localdatabase.localdb.StudentsDao;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    ListView lista;
+    List<Students> studentsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        lista = (ListView) findViewById(R.id.list_view);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -26,6 +37,23 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        studentsList = new ArrayList<>();
+
+        // Load from the database all the students that we have saved
+        StudentsDao studentsDao = DatabaseConnection.getStudentsDao(this);
+        // SELECT * FROM Students > List<Students>
+        studentsList = studentsDao.loadAll();
+
+
+        StudentsAdapter adapter = new StudentsAdapter(
+                this,
+                R.layout.student_item,
+                studentsList
+        );
+
+        lista.setAdapter(adapter);
+
     }
 
     @Override

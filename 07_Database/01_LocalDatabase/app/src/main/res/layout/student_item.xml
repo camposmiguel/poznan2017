@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+    <TextView
+        android:text="Michael"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:id="@+id/textViewName" />
+
+    <TextView
+        android:text="20 years old"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewName"
+        android:layout_alignLeft="@+id/textViewName"
+        android:layout_alignStart="@+id/textViewName"
+        android:layout_marginTop="11dp"
+        android:id="@+id/textViewAge" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_next"
+        android:layout_marginRight="22dp"
+        android:layout_marginEnd="22dp"
+        android:id="@+id/imageView"
+        android:layout_alignTop="@+id/textViewName"
+        android:layout_alignBottom="@+id/textViewAge"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Repeat"
+        android:padding="5dp"
+        android:textSize="12sp"
+        android:textColor="@android:color/white"
+        android:background="@drawable/bg_rounded"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textViewName"
+        android:layout_alignTop="@+id/textViewName"
+        android:layout_toEndOf="@+id/textViewName"
+        android:layout_toRightOf="@+id/textViewName"
+        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp"
+        android:id="@+id/textViewRepeat" />
+</RelativeLayout>
