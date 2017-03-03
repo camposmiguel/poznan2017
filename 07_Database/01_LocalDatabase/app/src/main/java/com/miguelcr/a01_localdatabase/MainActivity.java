@@ -1,5 +1,6 @@
 package com.miguelcr.a01_localdatabase;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,6 +20,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     ListView lista;
     List<Students> studentsList;
+    StudentsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +35,9 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                // Intent
+                Intent i = new Intent(MainActivity.this,NewStudentActivity.class);
+                startActivity(i);
             }
         });
 
@@ -46,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         studentsList = studentsDao.loadAll();
 
 
-        StudentsAdapter adapter = new StudentsAdapter(
+        adapter = new StudentsAdapter(
                 this,
                 R.layout.student_item,
                 studentsList
@@ -76,5 +79,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        StudentsDao studentsDao = DatabaseConnection.getStudentsDao(this);
+        studentsList.clear();
+        studentsList.addAll(studentsDao.loadAll());
+        adapter.notifyDataSetChanged();
+
     }
 }
